@@ -1,0 +1,10 @@
+name: CosmeticWater
+version: 1.0
+main: me.espryth.cosmeticwater.CosmeticWaterPlugin
+author: Espryth
+api-version: 1.19
+commands:
+  potion:
+    description: Give a potion to a player
+    usage: /potion
+    aliases: [p]

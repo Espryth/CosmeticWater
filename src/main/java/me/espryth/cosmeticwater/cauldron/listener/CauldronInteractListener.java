@@ -2,10 +2,12 @@ package me.espryth.cosmeticwater.cauldron.listener;
 
 import me.espryth.cosmeticwater.cauldron.CauldronManager;
 import org.bukkit.Material;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -14,7 +16,9 @@ public class CauldronInteractListener
 
   private final CauldronManager cauldronManager;
 
-  public CauldronInteractListener(CauldronManager cauldronManager) {
+  public CauldronInteractListener(
+      final @NotNull CauldronManager cauldronManager
+  ) {
     this.cauldronManager = cauldronManager;
   }
 
@@ -39,11 +43,16 @@ public class CauldronInteractListener
       return;
     }
 
-    final var potion = cauldronManager.createPotion(cauldron);
+    final var blockData = (Levelled) block.getBlockData();
+
+    // cauldron is empty!
+    if (blockData.getLevel() == blockData.getMinimumLevel()) {
+      return;
+    }
 
     player.getInventory().setItem(
         Objects.requireNonNull(event.getHand()),
-        potion
+        cauldron.potion().asItemStack()
     );
   }
 }

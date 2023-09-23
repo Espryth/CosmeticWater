@@ -1,38 +1,38 @@
 package me.espryth.cosmeticwater.cauldron;
 
+import com.google.common.collect.Maps;
+import me.espryth.cosmeticwater.potion.Potion;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.event.entity.EntityPotionEffectEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.block.data.Levelled;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
+
 public class CauldronManager {
 
-  public @Nullable Cauldron asCauldron(final @NotNull Block block) {
+  private final Map<Location, Cauldron> cauldrons = Maps.newHashMap();
+
+  private void loadCualdrons() {
 
   }
 
-  public @NotNull ItemStack createPotion(final @NotNull Cauldron cauldron) {
+  public @Nullable Cauldron asCauldron(final @NotNull Block block) {
+    return cauldrons.get(block.getLocation());
+  }
 
-    final var potionProperties = cauldron.potionProperties();
-
-    final var itemStack = new ItemStack(Material.POTION);
-    final var itemMeta = (PotionMeta) itemStack.getItemMeta();
-
-    itemMeta.displayName(potionProperties.name());
-    itemMeta.lore(potionProperties.lore());
-    itemMeta.setColor(potionProperties.color());
-
-    for (final var effect : potionProperties.effects()) {
-      itemMeta.addCustomEffect(effect, true);
-    }
-
-    itemStack.setItemMeta(itemMeta);
-    return itemStack;
+  public void createCauldron(
+      final @NotNull Block block,
+      final @NotNull Potion potion
+  ) {
+    block.setType(
+        Material.CAULDRON
+    );
+    final var blockData = (Levelled) block.getBlockData();
+    blockData.setLevel(blockData.getMaximumLevel());
+    cauldrons.put(block.getLocation(), new Cauldron(block, potion));
   }
 
 }
