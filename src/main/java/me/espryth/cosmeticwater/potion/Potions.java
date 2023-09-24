@@ -1,7 +1,7 @@
 package me.espryth.cosmeticwater.potion;
 
-import me.espryth.cosmeticwater.potion.watcher.EmptyWatcher;
-import me.espryth.cosmeticwater.potion.watcher.NearBlockWatcher;
+import me.espryth.cosmeticwater.potion.watcher.NearBlockPotionWatcher;
+import me.espryth.cosmeticwater.potion.watcher.SimplePotionWatcher;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
@@ -23,8 +23,7 @@ public final class Potions {
           PotionEffectType.SPEED
       ),
       1000,
-      null,
-      (player, potion) -> new NearBlockWatcher(
+      (player, potion) -> new NearBlockPotionWatcher(
           Set.of(
               Material.ROSE_BUSH
           ),
@@ -43,8 +42,7 @@ public final class Potions {
           PotionEffectType.JUMP
       ),
       1000,
-      PotionExecutor.REAL,
-      (player, potion) -> new EmptyWatcher()
+          SimplePotionWatcher::new
   );
 
   public static Potion getByName(String name) {

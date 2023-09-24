@@ -11,12 +11,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiConsumer;
 
+/**
+ * This enum is used to execute the potion effect.
+ * <p>
+ * There are two executors:
+ * <p>
+ * - FAKE: This executor will send a packet to the player
+ * with the potion effect, but it won't apply it.
+ * <p>
+ * - REAL: This executor will apply the potion effect to the player
+*/
 @SuppressWarnings({
-    "ConstantConditions",
-    "deprecation"
+        "ConstantConditions",
+        "deprecation"
 })
-
 public enum PotionExecutor {
+
   /**
    * This is a fake executor, it will send a packet to the player
    * with the potion effect, but it won't apply it.
@@ -36,6 +46,7 @@ public enum PotionExecutor {
         );
       }
   ),
+
   /**
    * This executor will apply the potion effect to the player
    */

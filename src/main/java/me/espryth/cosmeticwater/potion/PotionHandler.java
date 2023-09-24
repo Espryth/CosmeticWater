@@ -26,16 +26,6 @@ public class PotionHandler {
         potion.identifier()
     );
 
-    final var executor = potion.executor();
-
-    if (executor != null) {
-      for (final var effect : potion.effects()) {
-        executor.execute(
-            player, effect.createEffect(potion.duration(), 1)
-        );
-      }
-    }
-
     potionWatcherHandler.watch(
         potion.watcherFactory().apply(player, potion)
     );
