@@ -37,7 +37,7 @@ public class CauldronManager {
 
     ConfigurationSerialization.registerClass(Cauldron.class);
 
-    file = new File(plugin.getDataFolder(), "cauldrons.yml");
+    this.file = new File(plugin.getDataFolder(), FILE_NAME);
 
     if (!file.exists()) {
       try {
