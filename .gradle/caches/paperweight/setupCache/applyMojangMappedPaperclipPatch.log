@@ -1,2 +1,0 @@
-Command: C:\Users\awwnt\.jdks\corretto-17.0.8.1\bin\java.exe -Dpaperclip.patchonly=true -classpath C:\Users\awwnt\Desktop\GitHub\CosmeticWater\.gradle\caches\paperweight\setupCache\extractDevBundle.dir\data\paperclip-mojang+yarn.jar io.papermc.paperclip.Main
-Applying patches
