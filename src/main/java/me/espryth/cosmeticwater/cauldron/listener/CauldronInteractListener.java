@@ -22,7 +22,7 @@ public class CauldronInteractListener
     this.cauldronManager = cauldronManager;
   }
 
-  @EventHandler
+  @EventHandler(ignoreCancelled = true)
   public void onInteract(final PlayerInteractEvent event) {
 
     final var player = event.getPlayer();
